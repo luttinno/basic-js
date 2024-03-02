@@ -1,4 +1,4 @@
-const { NotImplementedError } = require('../extensions/index.js');
+const { NotImplementedError } = require("../extensions/index.js");
 
 /**
  * Given two strings, find the number of common characters between them.
@@ -11,11 +11,28 @@ const { NotImplementedError } = require('../extensions/index.js');
  * For s1 = "aabcc" and s2 = "adcaa", the output should be 3
  * Strings have 3 common characters - 2 "a"s and 1 "c".
  */
-function getCommonCharacterCount(/* s1, s2 */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function getCommonCharacterCount(s1, s2) {
+  const freq1 = {};
+  const freq2 = {};
+
+  for (let char of s1) {
+    freq1[char] = (freq1[char] || 0) + 1;
+  }
+
+  let count = 0;
+
+  for (let char of s2) {
+    if (freq1[char] && freq1[char] > 0) {
+      count++;
+      freq1[char]--;
+    } else {
+      freq2[char] = (freq2[char] || 0) + 1;
+    }
+  }
+
+  return count;
 }
 
 module.exports = {
-  getCommonCharacterCount
+  getCommonCharacterCount,
 };
